@@ -5,12 +5,13 @@ export default function TripList() {
 
   const [url, setUrl] = useState('http://localhost:3000/trips')
 
-  const { data, isPending } = useFetch(url)
+  const { data, isPending, error } = useFetch(url)
 
   return (
     <div className="trip-list">
       <h2>Trip List</h2>
       {isPending && <div>Loading trips...</div>}
+      {error && <div>{error}</div>}
       <ul>
         {data && data.map(trip => (
           <li key={trip.id}>
